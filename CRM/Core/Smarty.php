@@ -89,6 +89,8 @@ class CRM_Core_Smarty extends Smarty {
   private function initialize() {
     $config = CRM_Core_Config::singleton();
 
+/* The following needs to be commented out so that Smarty can load from cache
+
     if (isset($config->customTemplateDir) && $config->customTemplateDir) {
       $this->template_dir = array_merge(array($config->customTemplateDir),
         $config->templateDir
@@ -105,7 +107,10 @@ class CRM_Core_Smarty extends Smarty {
     if (!is_writable($this->compile_dir)) {
       echo "CiviCRM does not have permission to write temp files in {$this->compile_dir}, Exiting";
       exit();
-    }
+    }*/
+    
+    // This is an arbitrary string but it is needed afaik
+    $this->compile_dir = 'redis/';
 
     //Check for safe mode CRM-2207
     if (ini_get('safe_mode')) {
